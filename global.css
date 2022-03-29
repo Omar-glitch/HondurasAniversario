@@ -1,0 +1,49 @@
+:root {
+    --blue: #3f68ff;
+    --purple: #763fff;
+    --violet: #d63fff;
+    --pink: #ff3fc8;
+    --red: #ff3f68;
+    --orange: #ff763f;
+    --white: #F4F4F4;
+    --black: #1A1A1A;
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px ;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    background: var(--white);
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    background-color: var(--black);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--blue);
+    border-radius: 1.25rem;
+}
+
+a, button, svg {
+    text-decoration: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 760px) and (min-height: 1000px) {html {font-size: 26px;}}
+@media (min-width: 800px) and (min-height: 1100px) {html {font-size: 28px;}}
+@media (min-width: 1000px) and (min-height: 1350px) {html {font-size: 32px;}}
+@media (min-width: 1400px) and (min-height: 660px) {html {font-size: 24px;}}
+@media (min-width: 2500px) and (min-height: 660px) {html {font-size: 40px;}}

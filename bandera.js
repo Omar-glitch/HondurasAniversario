@@ -1,63 +1,64 @@
-// Loader
-window.addEventListener('load', () => {
-     let loader = document.querySelector(".loader");
-     loader.style.opacity = 0;
-     loader.style.visibility = 'hidden';
+// Listas del header Animacion:v
+const lista = document.querySelector('.list-header');
+const button = document.querySelector('#barras');
+const shadow = document.getElementById('shadow')
+let papelHigienico = true;
+
+const open_menu = () => {
+    lista.style.left = 0;
+    papelHigienico = false;
+    shadow.style.visibility = "visible";
+}
+
+const close_menu = () => {
+    lista.style.left = '-18.75rem';
+    papelHigienico = true;
+    shadow.style.visibility = "hidden";
+}
+
+button.addEventListener('click', () => {
+    if (papelHigienico) open_menu();
+    else close_menu();
 })
 
-// Listas del header Animacion:v
-var lista = document.querySelector('.list-header');
-var buttones = document.querySelector('.tit-header img:nth-child(3)');
-var papelHigienico = true;
-buttones.addEventListener('click', () => {
-    if(papelHigienico){
-        lista.style.left = 0;
-        buttones.src = 'ImgHonduras/SignoX.svg';
-        papelHigienico = false;
-    }else{
-        lista.style.left = '-500px'
-        buttones.src = 'ImgHonduras/Barras.svg';
-        papelHigienico = true
-    }
-})
 // HeaderAnimacion :v
-let posicionAnterior = window.pageYOffset;
-let header = document.querySelector('#header');
-window.addEventListener('scroll', () => {
-    let posicionActual = window.pageYOffset;
-    if(posicionAnterior > posicionActual){
-        header.style.top = "0";
-        lista.style.top = '0';
-    }else{
-        header.style.top = "-100px";
-        lista.style.top = '0';
-    }
+let posicionAnterior = window.scrollY;
+const header = document.querySelector('#header');
+
+const scroll = () => {
+    let posicionActual = window.scrollY;
+    if (posicionAnterior > posicionActual) header.style.top = "0";
+    else header.style.top = "-3.4375rem";
     posicionAnterior = posicionActual;
-})
-//Enlaces y navegacion izquierda
-let bol = document.querySelectorAll('.list-header li a');
-bol.forEach( (element) => {
-    element.addEventListener('click', () => {
-       lista.style.left = "-500px";
-       buttones.src = 'ImgHonduras/Barras.svg';
-       papelHigienico=true;
-    });
-});
-// OmarPatriotico
-let settings = document.querySelector('#settings');
-let patriotico = document.querySelector('#omarButPatriotico');
-let patria = true;
-settings.addEventListener('click', () => {
-    if (patria){
-        alert('Has descubierto un nuevo pokemon: Omar Patriotico');
-        prompt('Ingrese su contraseña del banco para continuar :V');
-        alert(':v')
-        patriotico.style.opacity = 1;
-        patriotico.style.visibility = 'visible';
-        patria = false
-    }else{
-        patriotico.style.opacity = 0;
-        patriotico.style.visibility = 'hidden';
-        patria = true
+
+    if (posicionActual > 30) header.style.background = "var(--white)";
+    else header.style.background = "transparent";
+}
+
+const resize = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    const is_less = width - (width / 7);
+    if (is_less > height) {
+        if (!papelHigienico) close_menu();
     }
-})
+}
+
+const click = (e) => {
+    if (papelHigienico) return;
+    if (button.contains(e.target)) return;
+    if (lista.contains(e.target)) return;
+    close_menu();
+}
+
+window.addEventListener('scroll', scroll)
+window.addEventListener('resize', resize);
+window.addEventListener('click', click);
+
+//Enlaces y navegacion izquierda
+const links = document.querySelectorAll('.list-header li a');
+
+links.forEach((link) => {
+    link.addEventListener('click', close_menu);
+});
