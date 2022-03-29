@@ -77,6 +77,16 @@
     color: var(--purple);
 }
 
+.list-header ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 6%;
+    width: 40%;
+    height: 0.25rem;
+    background-color: currentColor;
+}
+
 #barras {
     position: absolute;
     top: 50%;
@@ -506,6 +516,10 @@
     .list-header ul li a:hover {
         background-color: var(--blue);
         color: var(--white);
+    }
+
+    .list-header ul li a::before {
+        display: none;
     }
 
     #wave-down {
